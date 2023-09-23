@@ -125,7 +125,6 @@ const commentPost = asyncHandler(async (req, res) => {
       name: req.user.name,
       comment: comment,
       user: {
-        profile: user.profile,
         name: user.name,
         id: userId,
       },

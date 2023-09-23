@@ -43,8 +43,7 @@ const Body = () => {
   const [description, setDescription] = useState("");
   const [comment, setComment] = useState("");
   const [picturePath, setPicturePath] = useState("");
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const [activeIndex, setActiveIndex] = useState("");
+  const [notification, setNotification] = useState(true);
 
   const location = useLocation();
   const currentUrl = location.pathname;
@@ -66,7 +65,6 @@ const Body = () => {
   const [updatePost, { isLoading: isLoadingUpdatedPost }] =
     useUpdatePostMutation();
   const [createView, { isLoading: loadingViews }] = useCreateViewMutation();
- 
 
   const navigate = useNavigate();
   const { userinfo } = useSelector((state) => state.auth);
@@ -84,7 +82,19 @@ const Body = () => {
         userId: userinfo._id,
       }).unwrap();
       refetch();
-      toast.success("post added successfully...");
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          new Notification(description + " from " + userinfo.name);
+        }
+      });
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          setNotification(new Notification(userinfo.name + " reacted to a post"));
+        } else {
+          setNotification(new Notification());
+          notification.close();
+        }
+      });
       setDescription("");
     } catch (err) {
       toast.error(err?.data.message || err.message);
@@ -97,7 +107,20 @@ const Body = () => {
       console.log(id, userId);
       await likePost({ id, userId });
       refetch();
-      toast.success("You reacted to this post");
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          new Notification(userinfo.name + " reacted to a post");
+        }
+      });
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          setNotification(new Notification(userinfo.name + " reacted to a post"));
+        } else {
+          setNotification(new Notification());
+          notification.close();
+        }
+      });
+    
     } catch (error) {
       console.log(error.message);
     }
@@ -152,7 +175,19 @@ const Body = () => {
           comment: comment,
         }).unwrap();
         refetch();
-        toast.success("View Submitted");
+        Notification.requestPermission().then((perm) => {
+          if (perm === "granted") {
+            new Notification("New Comment " + comment);
+          }
+        });
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            setNotification(new Notification("New Comment " + comment));
+          } else {
+            setNotification(new Notification());
+            notification.close();
+          }
+        });
         e.target.view.value = "";
       } else {
         toast.error("Please write your view");
@@ -415,7 +450,10 @@ const Body = () => {
                                   }}
                                   className=" shadow-lg mx-1 border border-slate-950"
                                 /> */}
-                                <Link to={`/profile/${comment.user.id}`} className="">
+                                <Link
+                                  to={`/profile/${comment.user.id}`}
+                                  className=""
+                                >
                                   <FaUser className=" text-white border border-slate-500 text-3xl p-1 rounded-full" />
                                 </Link>{" "}
                                 <div className="  ml-1  py-3 px-1 ">
@@ -455,10 +493,16 @@ const Body = () => {
         </div>
       ) : (
         <div className="redirect mt-4  flex items-center justify-between w-2/3 mx-auto">
-          <Link to={"/login"} className=" bg-black p-3 rounded flex items-center text-white">
+          <Link
+            to={"/login"}
+            className=" bg-black p-3 rounded flex items-center text-white"
+          >
             Login <FaSignInAlt className=" mx-2" />
           </Link>
-          <Link to={"/register"} className=" bg-black p-3 rounded  flex items-center text-white">
+          <Link
+            to={"/register"}
+            className=" bg-black p-3 rounded  flex items-center text-white"
+          >
             Register <FaUserAlt className=" mx-2" />
           </Link>
         </div>
