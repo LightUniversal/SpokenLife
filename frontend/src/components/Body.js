@@ -82,6 +82,8 @@ const Body = () => {
         userId: userinfo._id,
       }).unwrap();
       refetch();
+      setDescription("");
+
       Notification.requestPermission().then((perm) => {
         if (perm === "granted") {
           new Notification(description + " from " + userinfo.name);
@@ -89,13 +91,11 @@ const Body = () => {
       });
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
-          setNotification(new Notification(userinfo.name + " reacted to a post"));
+          new Notification(userinfo.name + " reacted to a post");
         } else {
-          setNotification(new Notification());
-          notification.close();
+          new Notification();
         }
       });
-      setDescription("");
     } catch (err) {
       toast.error(err?.data.message || err.message);
     }
@@ -114,10 +114,9 @@ const Body = () => {
       });
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
-          setNotification(new Notification(userinfo.name + " reacted to a post"));
+          new Notification(userinfo.name + " reacted to a post");
         } else {
-          setNotification(new Notification());
-          notification.close();
+          new Notification();
         }
       });
     
