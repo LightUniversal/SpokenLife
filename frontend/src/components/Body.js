@@ -119,7 +119,6 @@ const Body = () => {
           new Notification();
         }
       });
-    
     } catch (error) {
       console.log(error.message);
     }
@@ -183,7 +182,7 @@ const Body = () => {
           if (document.visibilityState === "hidden") {
             setNotification(new Notification("New Comment " + comment));
           } else {
-            setNotification(new Notification());
+            new Notification();
             notification.close();
           }
         });
@@ -333,6 +332,21 @@ const Body = () => {
                   <div className="textposted relative animate__animated animate__bounceIn  text-black  shadow-md  py-3 text-sm bg-gray-900 mt-3 rounded-lg px-2 font-medium">
                     <span className="inline-block bg-slate-900 w-full py-3 px-2 rounded text-slate-300 font-medium shadow-md ">
                       {post.description}
+
+                      {post.description.includes("#") && (
+                        <Link
+                          to={post.description.slice(
+                            post.description.indexOf("#"),
+                            post.description.length
+                          )}
+                          className="block mt-2 text-blue-700"
+                        >
+                          {post.description.slice(
+                            post.description.indexOf("#"),
+                            post.description.length
+                          )}
+                        </Link>
+                      )}
                     </span>
                     <br />
                     <br />
@@ -457,6 +471,20 @@ const Body = () => {
                                 </Link>{" "}
                                 <div className="  ml-1  py-3 px-1 ">
                                   {comment.comment}
+                                  {comment.comment.includes("#") && (
+                                    <Link
+                                      to={comment.comment.slice(
+                                        comment.comment.indexOf("#"),
+                                        comment.comment.length
+                                      )}
+                                      className="block mt-2 text-blue-700"
+                                    >
+                                      {comment.comment.slice(
+                                        comment.comment.indexOf("#"),
+                                        comment.comment.length
+                                      )}
+                                    </Link>
+                                  )}
                                 </div>
                               </p>
                               <span className="relative text-xs rounded-sm  -top-1 bg-slate-900 py-1 px-2">
