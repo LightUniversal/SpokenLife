@@ -44,6 +44,7 @@ const Body = () => {
   const [comment, setComment] = useState("");
   const [picturePath, setPicturePath] = useState("");
   const [notification, setNotification] = useState(true);
+  
 
   const location = useLocation();
   const currentUrl = location.pathname;
@@ -245,8 +246,9 @@ const Body = () => {
                     >
                       <textarea
                         type="text"
-                        placeholder="what's on your mind?"
-                        className=" font-medium w-full p-4  text-slate-400 bg-slate-950 rounded shadow-lg postInput"
+                        placeholder="what's on your mind? 
+                        use # to include links"
+                        className=" h-24 font-medium w-full p-4  text-slate-400 bg-slate-950 rounded shadow-lg postInput"
                         name="post"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -336,7 +338,7 @@ const Body = () => {
                       {post.description.includes("#") && (
                         <Link
                           to={post.description.slice(
-                            post.description.indexOf("#"),
+                            Number(post.description.indexOf("#"))+1,
                             post.description.length
                           )}
                           className="block mt-2 text-blue-700"
@@ -474,7 +476,7 @@ const Body = () => {
                                   {comment.comment.includes("#") && (
                                     <Link
                                       to={comment.comment.slice(
-                                        comment.comment.indexOf("#"),
+                                        Number(comment.comment.indexOf("#"))+1,
                                         comment.comment.length
                                       )}
                                       className="block mt-2 text-blue-700"
