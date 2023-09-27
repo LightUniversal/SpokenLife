@@ -1,6 +1,5 @@
 import path from "path";
 import express from "express";
-import webpush from "web-push";
 import connectDb from "./config/db.js";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
@@ -19,23 +18,7 @@ connectDb();
 // CREATE AN EXPRESS APPLICATION
 const app = express();
 
-const publicVapidKey = "BCC0hi5XanvaE1V6K72bvz4T5_wZl7MkwYTcWTren6HiazDsbgPH0iriHgPe-bv12uWdfsQ2WoFbv-CEiwFET0Q";
-const privateVapidKey = "Ouep2vqKkdOb6JfVMOBY46XgHB3YmwHcO9G8rOUg8xU";
 
-webpush.setVapidDetails("mailto:lightsinfo78@gmail.com", publicVapidKey, privateVapidKey);
-app.post('/subscribe', (req, res) => {
-  // Get Push Subscription Object
-
-  const subscription = req.body;
-
-  res.status(201).json({});
-
-  // createPayLoad
-  const payLoad = JSON.stringify({title: "Push Test"});
-
-  // Pass the Object to the web push notifiaction
-  webpush.sendNotification(subscription, payLoad).catch(err => console.log(err));
-})
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
