@@ -18,6 +18,7 @@ const addPost = asyncHandler(async (req, res) => {
       likes: [],
       comments: [],
       twitter: user.twitter,
+      facebook: user.facebook,
       name: user.name,
     });
     await newPost.save();

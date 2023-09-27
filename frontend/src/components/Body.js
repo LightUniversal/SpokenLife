@@ -116,9 +116,7 @@ const Body = () => {
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
           new Notification(userinfo.name + " reacted to a post");
-        } else {
-          new Notification();
-        }
+        } 
       });
     } catch (error) {
       console.log(error.message);
@@ -174,6 +172,7 @@ const Body = () => {
           comment: comment,
         }).unwrap();
         refetch();
+        e.target.view.value = "";
         Notification.requestPermission().then((perm) => {
           if (perm === "granted") {
             new Notification("New Comment " + comment);
@@ -187,7 +186,6 @@ const Body = () => {
             notification.close();
           }
         });
-        e.target.view.value = "";
       } else {
         toast.error("Please write your view");
       }
@@ -323,7 +321,7 @@ const Body = () => {
                     </div>
                     <div className="addremovefriend ">
                       <Link
-                        to={`https://www.facebook.com/${userinfo.facebook}`}
+                        to={`https://www.facebook.com/${post.facebook}`}
                         className="userexists text-green-600 flex items-center"
                       >
                         <FaFacebook className=" relative -right-2" />
@@ -333,7 +331,7 @@ const Body = () => {
                   </div>
                   <div className="textposted relative animate__animated animate__bounceIn  text-black  shadow-md  py-3 text-sm bg-gray-900 mt-3 rounded-lg px-2 font-medium">
                     <span className="inline-block bg-slate-900 w-full py-3 px-2 rounded text-slate-300 font-medium shadow-md ">
-                      {post.description}
+                      {post.description.slice(0, post.description.indexOf("#"))}
 
                       {post.description.includes("#") && (
                         <Link
@@ -472,7 +470,7 @@ const Body = () => {
                                   <FaUser className=" text-white border border-slate-500 text-3xl p-1 rounded-full" />
                                 </Link>{" "}
                                 <div className="  ml-1  py-3 px-1 ">
-                                  {comment.comment}
+                                  {comment.comment.slice(0, comment.comment.indexOf("#"))}
                                   {comment.comment.includes("#") && (
                                     <Link
                                       to={comment.comment.slice(
