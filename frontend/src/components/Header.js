@@ -18,31 +18,29 @@ function Header() {
   const [userMenu, setUserMenu] = useState(false);
 
   const { userinfo } = useSelector((state) => state.auth);
-  if (userinfo) console.log(userinfo);
+  // if (userinfo) console.log(userinfo);
 
-  document.onclick = function (e) {
+  const Toggler = function () {
+    // setUserMenu(!userMenu);
     if (userMenu) {
-      setUserMenu(!userMenu);
-    } else if (
-      e.target.id === "userprofile" ||
-      e.target.id === "userprofileimage"
-    ) {
-      setUserMenu(!userMenu);
-      console.log("beans...");
+      setUserMenu(false);
+    } else {
+      setUserMenu(true);
     }
-  };
 
+    console.log(userMenu);
+  };
   return (
     <header className=" bg-black  fixed w-full top-0 header">
-      <div className=" flex header   justify-between items-center mx-auto  bg-black py-2 px-4">
+      <div className=" flex header   justify-between items-center mx-auto  bg-black py-5 px-4">
         <div className="logo  py-0">
           <Link
             to="/"
-            className="linklogo text-cente text-sm  rounded-sm shadow-lg text-white font-bold mx-4  block relative -left-5 p-2 -top-0"
-            style={{ width: "120px", cursor: "pointer" }}
+            className="linklogo text-cente text-sm  rounded-sm shadow-lg text-white font-medium mx-4  block relative -left-5 p-2 -top-0"
+            style={{ width: "", cursor: "pointer" }}
           >
             {/* <img src="/images/elogo.png" alt="" className="siteLogo p-3" /> */}
-            SPOKEN LIFE
+            Lu-Intelligence
           </Link>
         </div>
         {userinfo && (
@@ -72,8 +70,9 @@ function Header() {
                 </Link>
               </li> */}
               <li
-                className=" cursor-pointer text-xs break-words  flex items-center justify-between font-bold text-slate-500 py-3 px-3 rounded shadow-sm "
+                className="  cursor-pointer text-xs break-words  flex items-center justify-between font-bold text-slate-500 py-3 px-3  shadow-md border border-slate-800 "
                 id="userprofile"
+                onClick={Toggler}
               >
                 {/* <img
                 src={userinfo.profile}
@@ -86,9 +85,9 @@ function Header() {
                 id="userprofileimage"
                 className=" shadow-lg align-middle inline-block"
               /> */}
-                <FaUser className="shadow-lg align-middle inline-block mx-1 text-white border border-slate-500 text-3xl p-1 rounded-full" />
+                <FaUser className="shadow-lg align-middle inline-block mx-1 text-white border border-slate-700 text-3xl p-1 rounded-full" />
                 <span className=" break-words">
-                {String(userinfo.name).slice(0, 5)+"..."}
+                  {String(userinfo.name).slice(0, 5) + "..."}
                 </span>
                 <FaCaretDown className=" text-center text-slate-200 ml-2 inline-block align-middle relative -top-0.5" />
               </li>

@@ -44,7 +44,6 @@ const Body = () => {
   const [comment, setComment] = useState("");
   const [picturePath, setPicturePath] = useState("");
   const [notification, setNotification] = useState(true);
-  
 
   const location = useLocation();
   const currentUrl = location.pathname;
@@ -116,7 +115,7 @@ const Body = () => {
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
           new Notification(userinfo.name + " reacted to a post");
-        } 
+        }
       });
     } catch (error) {
       console.log(error.message);
@@ -221,7 +220,7 @@ const Body = () => {
             <h2>{error.message}</h2>
           ) : (
             <div className="mainbody mx-1.5">
-              <div className="userpost py-4 shadow-sm px-3 rounded-2xl bg-black">
+              <div className="userpost py-4 shadow-sm px-3 rounded-md bg-black">
                 <div className="userposts bg-slate-900 flex justify-between shadow-sm rounded-sm items-center w-full  py-4 px-3 ">
                   <div className="user mx-2 shadow-sm">
                     {/* <img
@@ -246,7 +245,7 @@ const Body = () => {
                         type="text"
                         placeholder="what's on your mind? 
                         use # to include links"
-                        className=" h-24 font-medium w-full p-4  text-slate-400 bg-slate-950 rounded shadow-lg postInput"
+                        className=" h-32 font-medium w-full p-5 px-10  text-slate-400 bg-slate-950 rounded shadow-lg postInput"
                         name="post"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -288,11 +287,11 @@ const Body = () => {
               {/* Post */}
               {data.map((post) => (
                 <div
-                  className="posts bg-black px-4 py-5 my-4 rounded-2xl "
+                  className="posts bg-black px-4 py-5 my-4 rounded-md "
                   key={post._id}
                 >
                   <div className="uppersection flex justify-between items-center shadow-sm shadow-slate-900 py-3 px-3 rounded-lg">
-                    <div className="userdetails  flex items-center cursor-pointer">
+                    <div className="userdetails p-2 flex items-center cursor-pointer">
                       {/* <img
                         src={`${currentUrl}${post.profile}`}
                         alt=""
@@ -303,7 +302,7 @@ const Body = () => {
                         }}
                       /> */}
                       <Link to={`/profile/${post.userId}`}>
-                        <FaUser className=" text-white border border-slate-500 text-3xl p-1 rounded-full" />
+                        <FaUser className=" text-white border border-slate-700 shadow-md text-3xl p-2 rounded-full" />
                       </Link>
                       <Link
                         to={`https://twitter.com/${post.twitter}`}
@@ -329,14 +328,14 @@ const Body = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className="textposted relative animate__animated animate__bounceIn  text-black  shadow-md  py-3 text-sm bg-gray-900 mt-3 rounded-lg px-2 font-medium">
-                    <span className="inline-block bg-slate-900 w-full py-3 px-2 rounded text-slate-300 font-medium shadow-md ">
+                  <div className="textposted relative animate__animated animate__bounceIn  text-black  shadow-md  py-3 text-sm bg-slate-950 mt-3 rounded-lg px-2 font-medium">
+                    <span className="inline-block bg-slate-900 w-full py-10 px-5 rounded text-slate-300 font-medium shadow-md text-sm">
                       {post.description.slice(0, post.description.indexOf("#"))}
 
                       {post.description.includes("#") && (
                         <Link
                           to={post.description.slice(
-                            Number(post.description.indexOf("#"))+1,
+                            Number(post.description.indexOf("#")) + 1,
                             post.description.length
                           )}
                           className="block mt-2 text-blue-700"
@@ -470,11 +469,15 @@ const Body = () => {
                                   <FaUser className=" text-white border border-slate-500 text-3xl p-1 rounded-full" />
                                 </Link>{" "}
                                 <div className="  ml-1  py-3 px-1 ">
-                                  {comment.comment.slice(0, comment.comment.indexOf("#"))}
+                                  {comment.comment.slice(
+                                    0,
+                                    comment.comment.indexOf("#")
+                                  )}
                                   {comment.comment.includes("#") && (
                                     <Link
                                       to={comment.comment.slice(
-                                        Number(comment.comment.indexOf("#"))+1,
+                                        Number(comment.comment.indexOf("#")) +
+                                          1,
                                         comment.comment.length
                                       )}
                                       className="block mt-2 text-blue-700"
@@ -519,19 +522,27 @@ const Body = () => {
           )}
         </div>
       ) : (
-        <div className="redirect mt-4  flex items-center justify-between w-2/3 mx-auto">
-          <Link
-            to={"/login"}
-            className=" bg-black p-3 rounded flex items-center text-white"
-          >
-            Login <FaSignInAlt className=" mx-2" />
-          </Link>
-          <Link
-            to={"/register"}
-            className=" bg-black p-3 rounded  flex items-center text-white"
-          >
-            Register <FaUserAlt className=" mx-2" />
-          </Link>
+        <div>
+          <div className="redirect mt-4  flex items-center justify-between w-2/3 mx-auto">
+            <Link
+              to={"/login"}
+              className=" bg-black p-3 rounded flex items-center text-white"
+            >
+              Login <FaSignInAlt className=" mx-2" />
+            </Link>
+            <Link
+              to={"/register"}
+              className=" bg-black p-3 rounded  flex items-center text-white"
+            >
+              Register <FaUserAlt className=" mx-2" />
+            </Link>
+            
+          </div>
+          <p className="text-sm mt-10 flex-wrap flex justify-center text-slate-500 mx-10">
+              &copy; {new Date().getFullYear()} Lu-Intelligence. All rights
+              reserved.
+              
+            </p>
         </div>
       )}
     </>
