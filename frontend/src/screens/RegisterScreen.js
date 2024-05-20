@@ -52,7 +52,7 @@ const RegisterScreen = () => {
         // The unwrap extracts values
         dispatch(setCredentials({ ...res }));
         navigate("/");
-        toast.success("Welcome to Spoken Life...");
+        toast.success("Welcome to Lu-Intelligence...");
       } catch (error) {
         toast.error(error?.data?.message || error.error);
       }
