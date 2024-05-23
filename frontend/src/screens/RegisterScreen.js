@@ -219,7 +219,7 @@ const RegisterScreen = () => {
         </div>
         <div className="register border-t font-medium text-sm border-slate-500 my-2 py-4">
           Already have an account?
-          <Link to={"/login"} className=" bg-green-900 mx-2 my-1 p-3 px-5 rounded">
+          <Link to={"/login"} className=" bg-green-900 mx-2 my-1 inline-block p-3 px-5 rounded">
             Login
           </Link>
         </div>

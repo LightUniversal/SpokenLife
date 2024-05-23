@@ -83,19 +83,6 @@ const Body = () => {
       }).unwrap();
       refetch();
       setDescription("");
-
-      Notification.requestPermission().then((perm) => {
-        if (perm === "granted") {
-          new Notification(description + " from " + userinfo.name);
-        }
-      });
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          new Notification(userinfo.name + " reacted to a post");
-        } else {
-          new Notification();
-        }
-      });
     } catch (err) {
       toast.error(err?.data.message || err.message);
     }
@@ -107,16 +94,6 @@ const Body = () => {
       console.log(id, userId);
       await likePost({ id, userId });
       refetch();
-      Notification.requestPermission().then((perm) => {
-        if (perm === "granted") {
-          new Notification(userinfo.name + " reacted to a post");
-        }
-      });
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          new Notification(userinfo.name + " reacted to a post");
-        }
-      });
     } catch (error) {
       console.log(error.message);
     }
@@ -172,19 +149,6 @@ const Body = () => {
         }).unwrap();
         refetch();
         e.target.view.value = "";
-        Notification.requestPermission().then((perm) => {
-          if (perm === "granted") {
-            new Notification("New Comment " + comment);
-          }
-        });
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") {
-            setNotification(new Notification("New Comment " + comment));
-          } else {
-            new Notification();
-            notification.close();
-          }
-        });
       } else {
         toast.error("Please write your view");
       }
@@ -347,12 +311,7 @@ const Body = () => {
                         </Link>
                       )}
                     </span>
-                    <br />
-                    <br />
-                    <br />
-                    <span className="date cursor-pointer absolute bottom-1 bg-gray-800 flex shadow-sm rounded items-center p-2 text-white text-xs font-medium">
-                      {post.createdAt}
-                    </span>
+
                     {userinfo._id === post.userId && (
                       <div>
                         <span
@@ -372,11 +331,14 @@ const Body = () => {
                   style={{ width: "100%", height: "100%" }}
                 /> */}
                   </div>
-                  <div className="actions bg-slate-900 py-3 px-3 rounded-md flex w-full mt-2 justify-between">
+                  <div className="actions bg-slate-950 py-3 px-3 rounded-md flex w-full mt-2 justify-between">
+                    <span className="date inline-block cursor-pointer border border-dashed border-slate-800  bottom-1 bg-gray-950  shadow-sm rounded items-center p-2  text-white text-xs font-medium">
+                      {post.createdAt}
+                    </span>
                     <Form className="flex">
                       {post.likes.includes(userinfo._id) ? (
                         <span
-                          className=" bg-slate-800 cursor-pointer flex shadow-md rounded-md items-center p-2 text-green-700 text-xs font-bold"
+                          className=" bg-slate-900 cursor-pointer flex shadow-md rounded-full items-center p-2 text-green-700 text-xs font-bold"
                           onClick={() => {
                             likePostHandler(post._id);
                           }}
@@ -385,7 +347,7 @@ const Body = () => {
                         </span>
                       ) : (
                         <span
-                          className=" bg-slate-800 cursor-pointer flex shadow-md rounded-md items-center p-2 text-white text-xs font-bold"
+                          className=" bg-slate-950 cursor-pointer flex shadow-md rounded-full items-center p-2 text-white text-xs font-bold"
                           onClick={() => {
                             likePostHandler(post._id);
                           }}
@@ -394,34 +356,34 @@ const Body = () => {
                         </span>
                       )}
                       {post.comments.length > 0 ? (
-                        <span className=" mx-2 bg-slate-800 flex shadow-md rounded-md items-center p-2 text-green-700 text-xs font-bold">
+                        <span className=" mx-2 bg-slate-900 flex shadow-md rounded-full items-center p-2 text-green-700 text-xs font-bold">
                           <FaCommentAlt className=" mx-1" />
                           {post.comments.length}
                         </span>
                       ) : (
-                        <span className=" mx-2 bg-slate-800 flex shadow-md rounded-md items-center p-2 text-white text-xs font-bold">
+                        <span className=" mx-2 bg-slate-950 flex shadow-md rounded-md items-center p-2 text-slate-700 text-xs font-bold">
                           <FaCommentAlt className=" mx-1" />
                           {post.comments.length}
                         </span>
                       )}
+                      <div className="share bg-slate-950 flex shadow-md rounded-md items-center text-slate-700 text-xs font-bold relative -right-2">
+                        <Link
+                          className="flex items-center p-2"
+                          to={`whatsapp://send?text=${post.description}`}
+                          data-action="share/whatsapp/share"
+                        >
+                          <FaShareAlt className=" mx-1" /> share
+                          <FaWhatsapp className="mx-1 font-bold text-green-500" />
+                        </Link>
+                      </div>
                     </Form>
-                    <div className="share bg-slate-800 flex shadow-md rounded-md items-center text-white text-xs font-bold relative -right-2">
-                      <Link
-                        className="flex items-center p-2"
-                        to={`whatsapp://send?text=${post.description}`}
-                        data-action="share/whatsapp/share"
-                      >
-                        <FaShareAlt className=" mx-1" /> share{" "}
-                        <FaWhatsapp className="mx-1 font-bold text-green-500" />
-                      </Link>
-                    </div>
                   </div>
                   {/* comment box */}
                   <Form
-                    className="commentarea bg-slate-900 mt-1 p-1 rounded-lg relative"
+                    className="commentarea bg-slate-950 mt-1 p-1 rounded-lg relative"
                     onSubmit={(e) => createViewsHandler(e, post._id)}
                   >
-                    <h6 className="flex items-center  text-slate-300  text-xs -mb-0.5 mx-2  pt-5 border-b border-slate-800 p-1">
+                    <h6 className="flex items-center  text-slate-500  text-xs -mb-0.5 mx-2  pt-5 border-b border-slate-800 p-1">
                       Views <FaCommentAlt className="mx-2" />
                     </h6>
                     {/* {post.comments.length > 0 && (
@@ -444,13 +406,13 @@ const Body = () => {
                     <div className="py-1 rounded-m">
                       {post.comments.map((comment, index) => (
                         <div
-                          className="comment  relative  text-slate-300 text-xs px-2 py-0.5 rounded-lg"
+                          className="comment  relative  text-slate-400 text-xs px-2 py-0.5 rounded-lg"
                           key={index}
                           ref={showComments}
                           id={post._id}
                         >
                           <div className={post._id}>
-                            <div className=" bg-slate-800 mb-1 border border-slate-800  shadow-inner px-2 rounded-md">
+                            <div className=" bg-slate-900 mb-1 border border-slate-800  shadow-inner px-2 rounded-md">
                               <p className=" flex items-center px-2 py-3  ">
                                 {/* <img
                                   src={comment.user.profile}
@@ -466,7 +428,7 @@ const Body = () => {
                                   to={`/profile/${comment.user.id}`}
                                   className=""
                                 >
-                                  <FaUser className=" text-white border border-slate-500 text-3xl p-1 rounded-full" />
+                                  <FaUser className=" text-white border border-slate-700 text-3xl p-2 rounded-full" />
                                 </Link>{" "}
                                 <div className="  ml-1  py-3 px-1 ">
                                   {comment.comment.slice(
@@ -490,7 +452,7 @@ const Body = () => {
                                   )}
                                 </div>
                               </p>
-                              <span className="relative text-xs rounded-sm  -top-1 bg-slate-900 py-1 px-2">
+                              <span className="relative text-xs rounded-sm -left-2  -top-1 bg-slate-950 py-2 px-2">
                                 From {comment.user.name}
                               </span>
                             </div>
@@ -509,7 +471,7 @@ const Body = () => {
                       ></textarea>
                       <button
                         type="submit"
-                        className="flex rounded items-center text-white text-xs mt-1 mb-1 bg-slate-800 py-2 px-2 font-medium shadow-md"
+                        className="flex rounded items-center text-white text-xs mt-1 mb-1 bg-slate-900 py-2 px-2 font-medium shadow-md"
                       >
                         comment
                         <FaCommentAlt className="text-white mx-1 align-base" />
@@ -536,13 +498,11 @@ const Body = () => {
             >
               Register <FaUserAlt className=" mx-2" />
             </Link>
-            
           </div>
           <p className="text-sm mt-10 flex-wrap flex justify-center text-slate-500 mx-10">
-              &copy; {new Date().getFullYear()} Lu-Intelligence. All rights
-              reserved.
-              
-            </p>
+            &copy; {new Date().getFullYear()} Lu-Intelligence. All rights
+            reserved.
+          </p>
         </div>
       )}
     </>
