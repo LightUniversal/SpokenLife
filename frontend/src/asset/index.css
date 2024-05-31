@@ -74,7 +74,7 @@ td:nth-child(even) {
 /* Tools */
 button.tools {
   z-index: 200 !important;
-  background-color: red;
+  background-color: black;
 }
 
 .questions button {

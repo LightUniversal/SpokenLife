@@ -485,7 +485,7 @@ const Body = () => {
                 </div>
               ))}
             </div>
-            <button className=" absolute tools -top-4 border p-1 border-slate-700 left-2" onClick={ToggleTools}>
+            <button className=" absolute tools top-4 border p-2 border-slate-700 left-2" onClick={ToggleTools}>
                 <FaBars className=" text-slate-600" />
               </button>
          { isTools && (
