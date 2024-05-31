@@ -491,7 +491,7 @@ const Body = () => {
                 <FaBars className=" text-slate-600" />
               </button>
          { isTools && (
-           <div className="others w-3/5 fixed bg-slate-950  z-100 top-28  rounded-sm  p-3 right-4 md:w-2/12">
+           <div className="others w-3/5 fixed bg-black z-100 top-28  rounded-sm  p-3 right-4 md:w-2/12">
               
            <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
              Tools <FaTools />
