@@ -487,11 +487,11 @@ const Body = () => {
                 </div>
               ))}
             </div>
-            <button className=" fixed tools top-28 border  p-2 border-slate-700 left-2" onClick={ToggleTools}>
+            <button className=" fixed tools top-28  p-2  left-2" onClick={ToggleTools}>
                 <FaBars className=" text-slate-600" />
               </button>
          { isTools && (
-           <div className="others w-3/5 fixed bg-slate-950  z-100 top-32 border border-slate-800 rounded-sm  p-3 right-4 md:w-2/12">
+           <div className="others w-3/5 fixed bg-slate-950  z-100 top-32  rounded-sm  p-3 right-4 md:w-2/12">
               
            <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
              Tools <FaTools />
