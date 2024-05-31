@@ -232,7 +232,9 @@ const Body = () => {
                   </div>
                 </div>
                 <div className="attachments py-2 flex justify-between relative -top-1  mt-2  ">
-                
+                <div>
+
+                </div>
                   <div className="submitPost">
                     <button
                       type="submit"
@@ -485,11 +487,11 @@ const Body = () => {
                 </div>
               ))}
             </div>
-            <button className=" absolute tools top-4 border p-2 border-slate-700 left-2" onClick={ToggleTools}>
+            <button className=" fixed tools top-28 border  p-2 border-slate-700 left-2" onClick={ToggleTools}>
                 <FaBars className=" text-slate-600" />
               </button>
          { isTools && (
-           <div className="others w-3/5 bg-black  absolute z-100 top-6 border border-slate-800 rounded-sm  p-3 right-4 md:w-2/12">
+           <div className="others w-3/5 fixed bg-slate-950  z-100 top-32 border border-slate-800 rounded-sm  p-3 right-4 md:w-2/12">
               
            <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
              Tools <FaTools />
