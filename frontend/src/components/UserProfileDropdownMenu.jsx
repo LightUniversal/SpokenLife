@@ -27,7 +27,7 @@ const UserProfileDropdownMenu = () => {
     }
   };
   return (
-    <div className=" dropdown mt-7 mr-1 w-36 bg-slate-900 shadow-md border border-slate-800">
+    <div className=" dropdown mt-7 mr-1 w-36  bg-black shadow-md border border-slate-800">
       {userinfo && (
         <ul>
           <li className=" shadow-sm p-3 border-b border-slate-600">

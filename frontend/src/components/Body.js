@@ -6,10 +6,12 @@ import Loader from "./Loader.js";
 
 import React from "react";
 import {
+  FaBars,
   FaBook,
   FaBookReader,
   FaCommentAlt,
   FaCommentDots,
+  FaDollarSign,
   FaEdit,
   FaEllipsisH,
   FaFacebook,
@@ -18,6 +20,7 @@ import {
   FaPlus,
   FaRegBuilding,
   FaRunning,
+  FaSearch,
   FaShareAlt,
   FaSignInAlt,
   FaThumbsUp,
@@ -46,6 +49,7 @@ import { setCredentials } from "../slices/authSlice.js";
 
 const Body = () => {
   const [description, setDescription] = useState("");
+  const [isTools, setIsTools] = useState(true);
   const [comment, setComment] = useState("");
   const [picturePath, setPicturePath] = useState("");
   const [notification, setNotification] = useState(true);
@@ -76,7 +80,7 @@ const Body = () => {
   // if(  == null) {
   //   navigate("/")
   // }
-
+  
   const addPostHandler = async (e) => {
     e.preventDefault();
 
@@ -179,6 +183,9 @@ const Body = () => {
     );
   };
 
+  const ToggleTools = function() {
+    setIsTools(preVal => !preVal)
+  }
   return (
     <>
       {userinfo ? (
@@ -213,7 +220,7 @@ const Body = () => {
                     >
                       <textarea
                         type="text"
-                        placeholder="what's on your mind? 
+                        placeholder="what's on your mind? Lets analyse ... 
                         use # to include links"
                         className=" h-32 font-medium w-full p-5 px-10  text-slate-400 bg-slate-950 rounded shadow-lg postInput"
                         name="post"
@@ -225,24 +232,7 @@ const Body = () => {
                   </div>
                 </div>
                 <div className="attachments py-2 flex justify-between relative -top-1  mt-2  ">
-                  <div className="image">
-                    {/* <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    value={picturePath}
-                    className=" bg-white absolute"
-                    style={{ visibility: "hidden" }}
-                    ref={fileElement}
-                  /> */}
-                    {/* <Link
-                      to="/"
-                      className=" flex items-center bg-slate-800 font-bold text-xs py-2 px-3 text-green-400 rounded shadow-sm"
-                    >
-                      <FaImage className=" align-middle mx-1 text-green-400" />
-                      Image
-                    </Link> */}
-                  </div>
+                
                   <div className="submitPost">
                     <button
                       type="submit"
@@ -346,9 +336,7 @@ const Body = () => {
                       {post.createdAt}
                     </span>
                     <Form className="flex items-center ml-5">
-                      <span className=" flex mx-5">
-                        <FaEllipsisH className=" text-slate-600 cursor-pointer"  />
-                      </span>
+                      
                       {post.likes.includes(userinfo._id) ? (
                         <span
                           className=" bg-slate-900 cursor-pointer flex shadow-md rounded-full items-center p-2 text-green-700 text-xs font-bold"
@@ -380,6 +368,9 @@ const Body = () => {
                         </span>
                       )}
                       <div className="share bg-slate-950 flex shadow-md rounded-md items-center text-slate-700 text-xs font-bold relative -right-2">
+                      {/* <span className=" flex mx-5">
+                        <FaEllipsisH className=" text-slate-600 cursor-pointer"  />
+                      </span> */}
                         <Link
                           className="flex items-center p-2"
                           to={`whatsapp://send?text=${post.description}`}
@@ -494,20 +485,32 @@ const Body = () => {
                 </div>
               ))}
             </div>
-          <div className="others w-3/5 bg-slate-900  absolute z-100 top-6 border border-slate-800 rounded-md  p-3 right-4 md:w-2/12">
-              <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
-                Tools <FaTools />
-              </h2>
-              <div className=" flex flex-col text-slate-400 gap-5 mt-5
-              ">
-                <Link className="flex items-center gap-2 border-b p-3 border-slate-700">
-                  Learning Center <FaBookReader className=" text-green-300 border rounded-full  text-xl p-1"/>
-                </Link>
-                <Link className="flex gap-2 items-center p-3 ">
-                  Library <FaBook className=" text-green-300 border rounded-full  text-xl p-1" />
-                </Link>
-              </div>
-          </div>
+            <button className=" absolute tools -top-4 border p-1 border-slate-700 left-2" onClick={ToggleTools}>
+                <FaBars className=" text-slate-600" />
+              </button>
+         { isTools && (
+           <div className="others w-3/5 bg-black  absolute z-100 top-6 border border-slate-800 rounded-sm  p-3 right-4 md:w-2/12">
+              
+           <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
+             Tools <FaTools />
+           </h2>
+           <div className=" flex flex-col text-slate-400 gap-5 mt-5 text-sm
+           ">
+             <Link className="flex items-center gap-2 border-b p-3 border-slate-700">
+               Learning Center <FaBookReader className=" text-green-500 border border-slate-500 rounded-full  text-xl p-1"/>
+             </Link>
+             <Link className="flex gap-2 border-b border-slate-700 items-center p-3 ">
+               Library <FaBook className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+             </Link>
+             <Link className="flex gap-2 items-center p-3 ">
+               Project Topics <FaBook className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+             </Link>
+             <Link className="flex gap-2 items-center p-3 border border-slate-700 rounded-sm">
+               Earn as You Learn <FaDollarSign className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+             </Link>
+           </div>
+       </div>
+         )}
             </>
           )}
         </div>
