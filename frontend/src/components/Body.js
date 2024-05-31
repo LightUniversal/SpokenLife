@@ -6,8 +6,12 @@ import Loader from "./Loader.js";
 
 import React from "react";
 import {
+  FaBook,
+  FaBookReader,
   FaCommentAlt,
+  FaCommentDots,
   FaEdit,
+  FaEllipsisH,
   FaFacebook,
   FaImage,
   FaMinus,
@@ -17,6 +21,7 @@ import {
   FaShareAlt,
   FaSignInAlt,
   FaThumbsUp,
+  FaTools,
   FaTrashAlt,
   FaTwitter,
   FaUser,
@@ -183,6 +188,7 @@ const Body = () => {
           ) : error ? (
             <h2>{error.message}</h2>
           ) : (
+            <>
             <div className="mainbody mx-1.5">
               <div className="userpost py-4 shadow-sm px-3 rounded-md bg-black">
                 <div className="userposts bg-slate-900 flex justify-between shadow-sm rounded-sm items-center w-full  py-4 px-3 ">
@@ -268,7 +274,9 @@ const Body = () => {
                       <Link to={`/profile/${post.userId}`}>
                         <FaUser className=" text-white border border-slate-700 shadow-md text-3xl p-2 rounded-full" />
                       </Link>
-                      <Link
+                      {
+                        post.twitter && (
+                          <Link
                         to={`https://twitter.com/${post.twitter}`}
                         className="details mx-2 relative"
                       >
@@ -281,6 +289,8 @@ const Body = () => {
                           {post.twitter}
                         </span>
                       </Link>
+                        )
+                      }
                     </div>
                     <div className="addremovefriend ">
                       <Link
@@ -335,7 +345,10 @@ const Body = () => {
                     <span className="date inline-block cursor-pointer border border-dashed border-slate-800  bottom-1 bg-gray-950  shadow-sm rounded items-center p-2  text-white text-xs font-medium">
                       {post.createdAt}
                     </span>
-                    <Form className="flex">
+                    <Form className="flex items-center">
+                      <span className=" flex mx-5">
+                        <FaEllipsisH className=" text-slate-600 cursor-pointer"  />
+                      </span>
                       {post.likes.includes(userinfo._id) ? (
                         <span
                           className=" bg-slate-900 cursor-pointer flex shadow-md rounded-full items-center p-2 text-green-700 text-xs font-bold"
@@ -481,6 +494,21 @@ const Body = () => {
                 </div>
               ))}
             </div>
+          <div className="others w-3/5 bg-slate-900  absolute z-100 top-6 border border-slate-800 rounded-md  p-3 right-4 md:w-2/12">
+              <h2 className=" flex gap-2 border-b p-3 border-slate-700 items-center text-slate-400 ">
+                Tools <FaTools />
+              </h2>
+              <div className=" flex flex-col text-slate-400 gap-5 mt-5
+              ">
+                <Link className="flex items-center gap-2 border-b p-3 border-slate-700">
+                  Learning Center <FaBookReader className=" text-green-300 border rounded-full  text-xl p-1"/>
+                </Link>
+                <Link className="flex gap-2 items-center p-3 ">
+                  Library <FaBook className=" text-green-300 border rounded-full  text-xl p-1" />
+                </Link>
+              </div>
+          </div>
+            </>
           )}
         </div>
       ) : (

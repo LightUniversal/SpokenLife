@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCog, FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaCog, FaSignInAlt, FaSignOutAlt, FaUser, FaUserAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/authSlice";
@@ -27,17 +27,17 @@ const UserProfileDropdownMenu = () => {
     }
   };
   return (
-    <div className=" dropdown w-32 bg-slate-900 shadow-md border border-slate-800">
+    <div className=" dropdown mt-7 mr-1 w-36 bg-slate-900 shadow-md border border-slate-800">
       {userinfo && (
         <ul>
-          {/* <li className=" shadow-sm p-3 border-b border-slate-600">
-            <Link to="#" className="flex items-center text-slate-300">
-              setting <FaCog className=" text-green-500 mx-2" />
+          <li className=" shadow-sm p-3 border-b border-slate-600">
+            <Link to="/profile" className="flex items-center text-slate-300 gap-3">
+              profile <FaUserAlt className=" text-slate-500 rounded-full border text-2xl p-1 mx-2" />
             </Link>
-          </li> */}
+          </li>
           <li className=" shadow-sm p-3 " onClick={logoutHandler}>
-            <Link to="#" className="flex items-center  text-slate-300">
-              Logout <FaSignOutAlt className=" text-slate-300 mx-2" />
+            <Link to="#" className="flex items-center  text-slate-300 gap-3">
+              Logout <FaSignOutAlt className=" text-slate-500 mx-2 rounded-full border text-2xl p-1" />
             </Link>
           </li>
         </ul>

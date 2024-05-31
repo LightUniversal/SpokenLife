@@ -9,6 +9,8 @@ import {
   FaCaretDown,
   FaCommentAlt,
   FaTimes,
+  FaToolbox,
+  FaTools,
   FaUser,
 } from "react-icons/fa";
 import { useState, useRef } from "react";
@@ -69,6 +71,12 @@ function Header() {
                   </span>
                 </Link>
               </li> */}
+              <li
+                className=" gap-2  cursor-pointer text-xs   flex items-center  font-bold text-slate-500 py-3 px-4  shadow-md border-b border-slate-800 "
+                onClick={Toggler}
+              >
+               Tools 
+              </li>
               <li
                 className="  cursor-pointer text-xs break-words  flex items-center justify-between font-bold text-slate-500 py-3 px-3  shadow-md border border-slate-800 "
                 id="userprofile"
