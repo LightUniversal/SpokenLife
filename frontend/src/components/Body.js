@@ -499,16 +499,16 @@ const Body = () => {
            <div className=" flex flex-col text-slate-400 gap-5 mt-5 text-sm
            ">
              <Link className="flex items-center gap-2 border-b p-3 border-slate-700">
-               Learning Center <FaBookReader className=" text-green-500 border border-slate-500 rounded-full  text-xl p-1"/>
+               Learning Center <FaBookReader className=" text-slate-500 border border-slate-500 rounded-full  text-xl p-1"/>
              </Link>
              <Link className="flex gap-2 border-b border-slate-700 items-center p-3 ">
-               Library <FaBook className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+               Library <FaBook className=" text-slate-500 border-slate-700 border rounded-full  text-xl p-1" />
              </Link>
              <Link className="flex gap-2 items-center p-3 ">
-               Project Topics <FaBook className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+               Project Topics <FaBook className=" text-slate-500 border-slate-700 border rounded-full  text-xl p-1" />
              </Link>
              <Link className="flex gap-2 items-center p-3 border border-slate-700 rounded-sm">
-               Earn as You Learn <FaDollarSign className=" text-green-500 border-slate-700 border rounded-full  text-xl p-1" />
+               Earn as You Learn <FaDollarSign className=" text-slate-500 border-slate-700 border rounded-full  text-xl p-1" />
              </Link>
            </div>
        </div>
