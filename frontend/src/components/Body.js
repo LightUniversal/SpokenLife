@@ -345,7 +345,7 @@ const Body = () => {
                     <span className="date inline-block cursor-pointer border border-dashed border-slate-800  bottom-1 bg-gray-950  shadow-sm rounded items-center p-2  text-white text-xs font-medium">
                       {post.createdAt}
                     </span>
-                    <Form className="flex items-center">
+                    <Form className="flex items-center ml-5">
                       <span className=" flex mx-5">
                         <FaEllipsisH className=" text-slate-600 cursor-pointer"  />
                       </span>
