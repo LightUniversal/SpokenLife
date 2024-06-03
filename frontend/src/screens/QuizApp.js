@@ -6,12 +6,16 @@ const Quiz = () => {
     {
       question: "What is the capital of France?",
       options: ["Paris", "Berlin", "Madrid", "Rome"],
-      answer: "Paris"
+      answer: "Paris",
+      sn:1
     },
     {
       question: "What is 2 + 2?",
       options: ["3", "4", "5", "6"],
-      answer: "4"
+      answer: "4",
+      sn:2,
+
+      solution:"2+2 = 4"
     },
     {
       question: "Who wrote 'To Kill a Mockingbird'?",
@@ -38,7 +42,10 @@ const Quiz = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prevTime => prevTime - 1);
+      setTimeLeft((prevTime) => prevTime - 1);
+      if(timeLeft == 4) {
+        console.log("DONE")
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -98,33 +105,34 @@ const Quiz = () => {
         </div>
       ) : (
         <div>
-          <div className="text-center mb-4">
-            <h2 className="text-2xl font-bold">{questions[currentQuestion].question}</h2>
-            <div className="mt-4">
+          <div className=" mb-4 p-4 text-center shadow-lg rounded-lg">
+            <h3 className=" text-xl  text-slate-200 bg-slate-600  p-2 rounded-md mb-5">Course Code : <span className=" p-2">GHS 102</span></h3>
+            <h2 className="text-lg text-center font-medium text-slate-800">{questions[currentQuestion].question}</h2>
+            <div className="mt-4 text-center">
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
                   className={`${
-                    selectedOption === option ? "bg-blue-500 text-white" : "bg-gray-300"
-                  } hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mr-2 mb-2`}
+                    selectedOption === option ? "bg-blue-500 text-white" : "bg-gray-900 text-white"
+                  } hover:bg-slate-700 hover:text-white  focus:bg-blue-500 text-black font-bold py-2 px-4 rounded mr-2 mb-2`}
                   onClick={() => handleOptionSelect(option)}
-                  disabled={selectedOption !== ""}
+                  // disabled={selectedOption !== ""}
                 >
                   {option}
                 </button>
               ))}
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between px-4">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
               onClick={handlePrev}
               disabled={currentQuestion === 0}
             >
               Prev
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
               onClick={handleNext}
               disabled={selectedOption === ""}
             >
