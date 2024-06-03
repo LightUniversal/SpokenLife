@@ -507,7 +507,7 @@ const Body = () => {
              <Link className="flex gap-2 items-center p-3 ">
                Project Topics <FaBook className=" text-slate-500 border-slate-700 border rounded-full  text-xl p-1" />
              </Link>
-             <Link className="flex gap-2 items-center p-3 border border-slate-700 rounded-sm">
+             <Link to={"/earnasyoulearn"} className="flex gap-2 items-center p-3 border border-slate-700 rounded-sm">
                Earn as You Learn <FaDollarSign className=" text-slate-500 border-slate-700 border rounded-full  text-xl p-1" />
              </Link>
            </div>

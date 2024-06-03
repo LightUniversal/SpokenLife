@@ -92,7 +92,7 @@ const Quiz = () => {
             <div className="solutions">
                 
             </div>
-          <h2 className="text-3xl font-bold mb-4">Quiz Completed!</h2>
+          <h2 className="text-3xl font-bold mb-4 ">Quiz Completed!</h2>
           <p className="text-lg mb-2 font-medium">Your score: {scorePercentage}%</p>
           <button
             className="bg-blue-500 shadow-sm hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
@@ -104,17 +104,18 @@ const Quiz = () => {
                 </button>
         </div>
       ) : (
-        <div>
-          <div className=" mb-4 p-4 text-center shadow-lg rounded-lg">
-            <h3 className=" text-xl  text-slate-200 bg-slate-600  p-2 rounded-md mb-5">Course Code : <span className=" p-2">GHS 102</span></h3>
-            <h2 className="text-lg text-center font-medium text-slate-800">{questions[currentQuestion].question}</h2>
+        <div className=" shadow-lg p-4 rounded-lg">
+          <div className=" mb-4 p-4 text-center  rounded-lg">
+            <h3 className=" text-xl  text-slate-100 bg-slate-700  p-4 rounded-sm mb-10">Course Code : <span className=" p-2">GHS 102</span></h3>
+            
+            <h2 className="text-lg text-center mb-5 font-medium text-slate-800">{questions[currentQuestion].question}</h2>
             <div className="mt-4 text-center">
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
                   className={`${
-                    selectedOption === option ? "bg-blue-500 text-white" : "bg-gray-900 text-white"
-                  } hover:bg-slate-700 hover:text-white  focus:bg-blue-500 text-black font-bold py-2 px-4 rounded mr-2 mb-2`}
+                    selectedOption === option ? "bg-slate-700 text-white" : " text-black border border-slate-300 shadow-sm"
+                  } hover:bg-slate-700 hover:text-white  text-black font-bold py-2 px-4 rounded-md mr-2 mb-2`}
                   onClick={() => handleOptionSelect(option)}
                   // disabled={selectedOption !== ""}
                 >
@@ -125,14 +126,14 @@ const Quiz = () => {
           </div>
           <div className="flex justify-between px-4">
             <button
-              className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
+              className="bg-slate-700 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
               onClick={handlePrev}
               disabled={currentQuestion === 0}
             >
               Prev
             </button>
             <button
-              className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
+              className="bg-slate-700 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-4"
               onClick={handleNext}
               disabled={selectedOption === ""}
             >
