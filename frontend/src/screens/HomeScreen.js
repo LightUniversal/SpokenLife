@@ -6,6 +6,7 @@ const HomeScreen = () => {
     <div>
       <Body />
     </div>
+    
   )
 }
 
