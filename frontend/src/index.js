@@ -21,6 +21,7 @@ import QuestionScreen from "./screens/QuestionScreen";
 import Profile from "./screens/Profile"
 import QuizApp from "./screens/QuizApp";
 import Earn from "./screens/Earn";
+import SelectSubject from "./screens/SelectSubject";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,8 +32,9 @@ const router = createBrowserRouter(
       <Route path="/profile/:id" element={<ProfileScreen />}></Route>
       <Route path="/practice" element={<PracticeScreen />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
-      <Route path="/quiz" element={<QuizApp />}></Route>
+      <Route path="/quiz/:id" element={<QuizApp />}></Route>
       <Route path="/earnasyoulearn" element={<Earn />}></Route>
+      <Route path="/selectsubject" element={<SelectSubject />}></Route>
       <Route path="/practicequestions" element={<QuestionScreen />}></Route>
     </Route>
   )
