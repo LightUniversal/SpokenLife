@@ -10,7 +10,7 @@ const questionSchema = mongoose.Schema({
         default:[],
         required: true
     },
-    answer: {
+    correctAnswer: {
         type: String,
         required: true
     },
@@ -19,22 +19,8 @@ const questionSchema = mongoose.Schema({
         required: true
     }
 });
-const courseSchema = mongoose.Schema({
-    title: {
-        type:String,
-        required: true
-    },
-    level: {
-        type:String,
-        required: true
-    },
-    creditLoad: {
-        type:Number,
-        required: true
-    },
-    questions: [questionSchema],
-});
 
-const Course = mongoose.model("Course", courseSchema);
+
+const Course = mongoose.model("Course", questionSchema);
 
 export default Course;

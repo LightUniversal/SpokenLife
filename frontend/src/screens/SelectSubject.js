@@ -3,7 +3,7 @@ import { FaBook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SelectSubject = () => {
-    const [selectedOption, useSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState("");
 
 
     console.log(selectedOption);
@@ -20,7 +20,7 @@ const SelectSubject = () => {
             className=" cursor-pointer border p-2 rounded-md"
             id="subjects"
             value={selectedOption}
-            // onChange={(e) => {useSelectedOption(e.target.value)}}
+            onChange={(e) => {setSelectedOption(e.target.value)}}
           >
             <option value="igbo">Igbo</option>
             <option value="ich102">ICH 102</option>

@@ -498,7 +498,7 @@ const Body = () => {
            </h2>
            <div className=" flex flex-col text-slate-400 gap-5 mt-5 text-sm
            ">
-             <Link to={"/quiz"} className="flex items-center gap-2 border-b p-3 border-slate-700">
+             <Link to={"/selectsubject"} className="flex items-center gap-2 border-b p-3 border-slate-700">
                Quiz Center <FaBookReader className=" text-slate-500 border border-slate-500 rounded-full  text-xl p-1"/>
              </Link>
              <Link className="flex gap-2 border-b border-slate-700 items-center p-3 ">

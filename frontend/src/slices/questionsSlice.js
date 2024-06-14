@@ -8,9 +8,17 @@ export const courseApiSlice = apiSlice.injectEndpoints({
         url: `${COURSE_URL}`,
       }),
     }),
+    addQuestion: builder.mutation({
+      query: (data) => ({
+        url: `${COURSE_URL}`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
 export const {
-    useGetAllQSTQuery
+    useGetAllQSTQuery,
+    useAddQuestionMutation,
 } = courseApiSlice;
